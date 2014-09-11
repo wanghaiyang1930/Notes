@@ -1,0 +1,7 @@
+
+1. root权限：
+   sudo passwd //设置root密码;
+2. 选择源：
+   System Settings -> Software & Updates -> Download from -> others -> Select Best Server;
+3. 安在小企鹅输入法：
+   sudo apt-get install fcitx-table-wbpy -> 重启 -> 配置
