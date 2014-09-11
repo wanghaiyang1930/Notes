@@ -5,3 +5,8 @@
    System Settings -> Software & Updates -> Download from -> others -> Select Best Server;
 3. 安在小企鹅输入法：
    sudo apt-get install fcitx-table-wbpy -> 重启 -> 配置
+4. 安装Adobe Flash：
+   下载tar.gz包 -> 解压 -> 把两个文件分别拷贝到相应的文件夹下（sudo cp libflashplayer.so /usr/lib/mozilla/plugins 
+   和 sudo cp -r usr/* /usr）
+5. 安装emacs 23
+   sudo apt-get install emacs
