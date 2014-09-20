@@ -1,0 +1,62 @@
+1. Emacs 主目录
+Windows 下 Emacs的主目录在C:\Users\wanghaiyang\AppData\Roaming路径下；
+Linux 下 Emacs的主目录在./home/wanghaiyang路径下。
+2. Emacs 加载路径
+Windows 下 Emacs的加载路径为解压路径D:\emacs\site-lisp；
+Linux 下 Emacs的加载路径为usr/share/emacs/site-lisp。
+网上下载的配色方案之类的.el文件要放在这个加载路径上。
+3. Emacs 配置文件
+在Windows下是无法手动建立.emacs文件的，可以打开Emacs然后在Options下随便
+挑个选项比如：Paren Match Highlighting，然后点Save Options，此时可以看到下面的提示
+Wrote c:/Users/wanghaiyang/AppData/Roaming/.emacs这就是生成的.emacs文件了。
+4. 引导路径
+(1) Window
+为了以后可以反复使用配置和插件，我可以改变插件导入路径，在.emacs添加下面代码
+;;改变默认路径
+(setenv "HOME" "D:/Emacs")
+(setenv "PATH" "D:/Emacs")
+;;设置默认路径
+(setq default-directory "~/")
+(2) Linux
+(setq default-directory "~/home/wanghaiyang/") ;;设置了默认路径后面的load-path才能找到加载路径
+5.  安装插件
+Emacs和Vim都有大量的插件，一些经久不衰、广泛使用的插件组合起来，就体现出一种"集体智慧"。Emacs的插件一般都是一个以el为后缀名的文件。
+首先要指定一个插件目录，比如~/.emacs.d/lisps，从这里（http://download.savannah.gnu.org/releases/color-theme/）下载，解压后将color-theme.el文件和themes文件夹复制到插件目录，然后修改配置文件:
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+(require 'color-theme)
+(color-theme-initialize)
+	启动Emacs后，可以执行插件提供的命令:M-x color-theme-select 就会进入配色方案选择界面。选好之后，可将将配色方案设成默认，在配色方案选择界面中选择主题后按d，会出现该配置的提示信息，比如：
+color-theme-classic is an interactive Lisp function in
+	`color-theme-library.el'.
+
+	(color-theme-classic)
+
+	Color theme by Frederic Giroud, created 2001-01-18.
+	AntiqueWhite on darkslategrey scheme.  Based on Gnome 2, with my favorit
+	color foreground-color and fontlock color.
+将(color-theme-dark-blue2)的内容添加到.emacs配置文件中，就可以每次启动Emacs时自动选择配色方案了。配置后文件的内容如下：
+;;改变默认路径
+(setenv "HOME" "D:/Emacs")
+(setenv "PATH" "D:/Emacs")
+;;设置默认路径
+(setq default-directory "~/")
+
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+
+(require 'color-theme)
+(setq color-theme-is-global t)
+(color-theme-initialize) ;;一定要有初始化，否则报错
+(color-theme-dark-blue2)
+
+
+6. 程序缩进风格
+;;Emacs内部已经定制了多种程序，下面程序可以为不同语言定制不同的缩进风格。如：定制C/C++缩进风格。
+	(add-hook 'c-mode-hook
+          '(lambda ()
+             (c-set-style "k&r")))
+	(add-hook 'c++-mode-hook
+          '(lambda ()
+             (c-set-style "stroustrup")))
+	;; 设置缩进字符数
+	(setq c-basic-offset 4)
+7. 
